@@ -11,7 +11,7 @@ var markers = L.markerClusterGroup();
 coord.forEach(element => {
     let res = element.split(' ');
     var a = [res[0],res[1]];
-    var marker = L.marker(new L.LatLng(a[0],a[1]), {title:'dsa'});
+    var marker = L.marker(new L.LatLng(a[0],a[1]));
     markers.addLayer(marker);
 
 });
