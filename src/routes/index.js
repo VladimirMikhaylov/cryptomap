@@ -8,8 +8,7 @@ var Redis = require('ioredis');
 router.use(function (req, res, next) {
   console.log('Time:', Date.now());
   const est = 'hi!';
-  // res.send(est)
-  // redis.get()
+
   next();
 });
 
