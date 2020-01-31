@@ -5,10 +5,36 @@ redis.on('ready', ()=>{ console.log('Redis is ready')});
 redis.on('error', (err) => {
     throw new Error('Redis error', err)
 });
-const pers = async function(){
-    let asd = await redis.get('test');
-    console.log(asd)
-    return asd;
-}
 
-module.exports = pers;
+module.exports = {
+    async getAllKeys(){
+        let asd = await redis.keys('*');
+        return asd;
+    },
+
+    async getAllValues(keys){
+        const values = {
+            keys:[],
+            values: []
+        };
+        
+        for( const item of keys){
+            values.keys.push(item);
+            values.values.push(await redis.get(item));
+        }  
+        return values;
+    },
+
+    async setAllValues(items){
+        // console.log('it', items);
+        for(let i=0; i<items.keys.length; i++){
+            // console.log('item', items.keys[i]+items.values[i]);
+            await redis
+                .pipeline()
+                .set(items.keys[i], items.values[i])
+                .expire(items.key, 900)
+                .exec();
+        }
+        // console.log('done');
+    }
+};
