@@ -3,8 +3,6 @@ const nodes = require('../modules/nodes/index')
 
 module.exports = {
     async getCache(){
-        const currentNodes = await nodes.getAllNodes();
-        console.log('curent', currentNodes.names.length);
         let res = await redis.getAllKeys();
         if(res.length === 0){
             await this.setCache();
