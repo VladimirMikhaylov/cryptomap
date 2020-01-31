@@ -18,7 +18,7 @@ var geoip = require('geoip-lite')
 //         this.applicationVersion = applicationVersion;
 //     }
 // }
-exports.getAll =  async function () {
+exports.getAll =  async function() {
     const result = await axios.get(`${process.env.ACRYL_API}`);
     const res = {
       names:[],
@@ -36,6 +36,5 @@ exports.getAll =  async function () {
       coord = coord.ll[0] + ' ' + coord.ll[1];
       res.coords.push(coord);
     }  
-    // console.log(res);
     return res;
 };
