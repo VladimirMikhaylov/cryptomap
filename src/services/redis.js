@@ -5,4 +5,4 @@ async function redisGetCache(){
     return console.log('asd');
 }
 
-module.exports = redisGetCache;
+module.exports = {redisGetCache};
