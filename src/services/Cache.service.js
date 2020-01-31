@@ -31,7 +31,6 @@ module.exports = {
 
     async setCache(){
         const currentNodes = await nodes.getAllNodes();
-        console.log('curent', currentNodes.names.length);
         const res = {
             keys:[],
             values:[]

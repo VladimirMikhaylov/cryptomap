@@ -26,15 +26,12 @@ module.exports = {
     },
 
     async setAllValues(items){
-        // console.log('it', items);
         for(let i=0; i<items.keys.length; i++){
-            // console.log('item', items.keys[i]+items.values[i]);
             await redis
                 .pipeline()
                 .set(items.keys[i], items.values[i])
                 .expire(items.key, 900)
                 .exec();
         }
-        // console.log('done');
     }
 };
